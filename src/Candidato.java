@@ -1,19 +1,19 @@
 
 public class Candidato {
-    private int id;
+    private int numero;
     private String nome;
-    private String cargo;
+    private Cargo cargo;
     private String partido;
 
-    public void setId(int id) {
-        this.id = id;
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(Cargo cargo) {
         this.cargo = cargo;
     }
 
@@ -21,15 +21,15 @@ public class Candidato {
         this.partido = partido;
     }
 
-    public int getId() {
-        return id;
+    public int getNumero() {
+        return numero;
     }
     
     public String getNome() {
         return nome;
     }
     
-    public String getCargo() {
+    public Cargo getCargo() {
         return cargo;
     }
     
