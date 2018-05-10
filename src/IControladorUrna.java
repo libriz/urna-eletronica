@@ -1,8 +1,7 @@
 
 public interface IControladorUrna {
     
-    /**
-     * @param eleitor 
+    /** 
      * @param candidato 
      * @return retorna o voto
      */
