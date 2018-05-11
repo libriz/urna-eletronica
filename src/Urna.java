@@ -30,7 +30,7 @@ public class Urna implements IUrna{
             if(candidatos.get(i).getNumero()==numeroCandidato)
                 voto = numeroCandidato;
             else
-                voto = 100; // voto invalido
+                voto = -1; // voto invalido
         }
         
         return voto;
