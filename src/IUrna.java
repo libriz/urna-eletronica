@@ -8,5 +8,4 @@ public interface IUrna {
     public void setSecaoEleitoral(int secaoEleitoral);
     public void setTurno(int turno);
     public int votar(int numeroCandidato);
-    public String totalizar();
 }
