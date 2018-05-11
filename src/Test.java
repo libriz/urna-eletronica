@@ -6,7 +6,7 @@ public class Test {
         
         IUrna urna1 = controladorUrnas.incluiUrna("SC", 1, 1, "Florianopolis", 1, 5);
         urna1.incluiCandidato(01, "candidato01", Cargo.GOVERNADOR, "partido1");
-        urna1.incluirCandidato(02, "candidato02", Cargo.GOVERNADOR, "partido1");
+        //urna1.incluiCandidato(02, "candidato02", Cargo.GOVERNADOR, "partido1");
         urna1.incluiCandidato(03, "candidato03", Cargo.GOVERNADOR, "partido2");
         urna1.incluiCandidato(04, "candidato04", Cargo.DEPUTADO_ESTADUAL, "partido1");
         urna1.incluiCandidato(05, "candidato05", Cargo.DEPUTADO_ESTADUAL, "partido2");
