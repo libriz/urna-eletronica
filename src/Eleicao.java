@@ -1,10 +1,20 @@
 
 public class Eleicao {
-    
-    //public String resultado(){
-        //urnas cadastradas
-        //governador eleito:
-        //deputados estaduais eleitos: (3 vagas)
-        //return resultado;
-    //}
+    public static void main(String[] args){
+        
+        //resultado parcial:
+        
+        //encerrar eleicao? ---> resultado();
+        
+        IControladorUrnas controladorUrnas = new ControladorUrnas();
+        
+        //Resultado();
+        System.out.printf("%s",
+                "Urnas cadastradas: "+controladorUrnas.totalizarUrnas()
+                //"votos em branco: " + 
+                //"votos nulo: " + 
+                //"Governador eleito: " + 
+                //"Deputados eleitos: " + 
+                );
+    }
 }

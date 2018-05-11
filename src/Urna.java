@@ -10,6 +10,7 @@ public class Urna implements IUrna{
     public int turno;
     public int numeroDeEleitores;
     public List<Candidato> candidatos = new ArrayList();
+    public List<Integer> votos = new ArrayList();
     public int voto;
     
     public Candidato incluiCandidato(int numero, String nome, Cargo cargo, String partido) throws ErroNoCandidatoException{
@@ -25,12 +26,21 @@ public class Urna implements IUrna{
         return candidato;
     }
     
-    public int votar(int numeroCandidato){
-        for(int i=0;i<candidatos.size();i++){
-            if(candidatos.get(i).getNumero()==numeroCandidato)
-                voto = numeroCandidato;
-            else
-                voto = -1; // voto invalido
+    public int votar(int numero){
+        voto = -1; // voto invalido
+        
+        if(numero==00){
+            voto=00;
+            votos.add(voto);
+        }else if(numero==99){
+            voto=99;
+            votos.add(voto);
+        }else{
+            for(int i=0;i<candidatos.size();i++){
+                if(candidatos.get(i).getNumero()==numero)
+                    voto = numero;
+                    votos.add(voto);   
+            }
         }
         
         return voto;

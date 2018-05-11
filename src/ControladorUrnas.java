@@ -20,4 +20,8 @@ public class ControladorUrnas implements IControladorUrnas{
         
         return urna;
     }
+    
+    public int totalizarUrnas(){
+        return urnas.size();
+    }
 }
