@@ -7,6 +7,6 @@ public interface IUrna {
     public void setZonaEleitoral(int zonaEleitoral);
     public void setSecaoEleitoral(int secaoEleitoral);
     public void setTurno(int turno);
-    public String votar(int numeroCandidato);
+    public int votar(int numeroCandidato);
     public String totalizar();
 }
