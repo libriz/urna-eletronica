@@ -46,6 +46,16 @@ public class Urna implements IUrna{
         return voto;
     }
     
+    
+    public List<Integer> getVotos(){
+        //int voto;
+            
+        //for(int i = 0; i < votos.size(); i++)
+            //voto = votos.get(i));
+        
+        return votos;
+    }
+    
     public void setEstadoFederativo(String estadoFederativo){
         this.estadoFederativo = estadoFederativo;
     }
