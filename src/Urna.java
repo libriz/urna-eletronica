@@ -11,23 +11,18 @@ public class Urna implements IUrna{
     public int numeroDeEleitores;
     public List<Candidato> candidatos = new ArrayList();
     public List<Integer> votos = new ArrayList();
-    public int voto;
     
-    public Candidato incluiCandidato(int numero, String nome, Cargo cargo, String partido) throws ErroNoCandidatoException{
-        Candidato candidato = new Candidato();
-        
-        candidato.setNumero(numero);
-        candidato.setNome(nome);
-        candidato.setCargo(cargo);
-        candidato.setPartido(partido);
-        
-        candidatos.add(candidato);
+    public Candidato incluirCandidato(Candidato candidato) throws ErroNoCandidatoException{
+        if(candidatos.contains(candidato))
+            throw new ErroNoCandidatoException();
+        else
+            candidatos.add(candidato);
         
         return candidato;
     }
     
     public int votar(int numero){
-        voto = -1; // voto invalido
+        int voto = -1; // voto invalido
         
         if(numero==00){
             voto=00;
@@ -37,22 +32,21 @@ public class Urna implements IUrna{
             votos.add(voto);
         }else{
             for(int i=0;i<candidatos.size();i++){
-                if(candidatos.get(i).getNumero()==numero)
+                Candidato candidatoTemp = candidatos.get(i);
+                if(candidatoTemp.getNumero()==numero)
                     voto = numero;
-                    votos.add(voto);   
             }
+            votos.add(voto);
         }
         
         return voto;
     }
     
+    public List<Candidato> getCandidatos(){
+        return candidatos;
+    }
     
     public List<Integer> getVotos(){
-        //int voto;
-            
-        //for(int i = 0; i < votos.size(); i++)
-            //voto = votos.get(i));
-        
         return votos;
     }
     

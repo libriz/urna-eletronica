@@ -2,12 +2,15 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Eleicao{
     
     public List<Urna> urnas = new ArrayList();
     public List<Integer> votos = new ArrayList();
-    
+    public List<Candidato> candidatos = new ArrayList();
     
     public Urna incluirUrna(String estadoFederativo, int zonaEleitoral, int secaoEleitoral, 
             String cidade, int turno, int numeroDeEleitores){
@@ -25,13 +28,9 @@ public class Eleicao{
         return urna;
     }
     
-    public int totalizarUrnas(){
-        return urnas.size();
-    }
-    
     public void coletarVotos(){
         List<Integer> votosTemp = new ArrayList();
-        int v;
+        int v = -1;
         
         for(int i = 0; i < urnas.size(); i++){
             Urna urna = urnas.get(i);
@@ -43,60 +42,74 @@ public class Eleicao{
         }
     }
     
-    public int getVotosEmBranco(){
-        int voto = 0;
+    public void coletarCandidatos(){
+        List<Candidato> candidatosTemp = new ArrayList();
+        Candidato candidato;
         
-        for(int i = 0; i < votos.size(); i++){
-            if(votos.get(i)==00)
-            voto++;
+        for(int i = 0; i < urnas.size(); i++){
+            Urna urna = urnas.get(i);
+            candidatosTemp = urna.getCandidatos();
+                for(int y = 0; y < candidatosTemp.size(); y++){
+                    candidato = candidatosTemp.get(y);
+                    if(!candidatos.contains(candidato))
+                        candidatos.add(candidato);
+                }
         }
-        
-        return voto;
     }
     
-    public int getVotosNulo(){
-        int voto = 0;
+    public String resultado(){
+        coletarCandidatos();
+        coletarVotos();
         
-        for(int i = 0; i < votos.size(); i++){
-            if(votos.get(i)==99)
-            voto++;
-        }
+        String resultado = "Resultado: " + "\n\n";
         
-        return voto;
-    }
-    
-    public String getGovernadorMaisVotado(){
-        String governador = null;
+        resultado+= "Urnas cadastradas: " + urnas.size() + "\n\n";
         
-        //
+        resultado+= "Candidatos(as) cadastrados(as): " + candidatos.size() + "\n\n";
         
-        return governador;
-    }
-    
-    public String getDeputadosMaisVotados(){
-        String deputados = null;
+        Set<Integer> uniqueSet = new HashSet<Integer>(votos);
         
-        //
+	for (Integer temp : uniqueSet) {
+                if(temp!=00 && temp!=99){
+                    Candidato candidato = null;
+                    for(int i = 0; i < candidatos.size(); i++){
+                        candidato = candidatos.get(i);
+                        if(temp==candidato.getNumero())
+                            resultado+= candidato.getNome() + ": " + Collections.frequency(votos, temp) + " votos" + "\n";
+                    }
+                }
+	}
         
-        return deputados;
+        resultado+= "\n";
+        
+        for (Integer temp : uniqueSet) {
+            if(temp==00)
+                resultado+= "Votos em branco: " + Collections.frequency(votos, temp) + " votos" + "\n";
+            else if(temp==99)
+                resultado+= "Votos nulos: " + Collections.frequency(votos, temp) + " votos" + "\n";
+	}
+        
+        return resultado;
     }
     
     public static void main(String[] args){
         
-        Eleicao eleicao = new Eleicao();
+        //Eleicao eleicao = new Eleicao();
         
         //resultado parcial:
         
         //encerrar eleicao?
         
         //resultado
-        eleicao.coletarVotos();
+        /*        eleicao.coletarVotos();
         System.out.println("Resultado: ");
         System.out.println("Urnas cadastradas: "+ eleicao.totalizarUrnas());
         System.out.println("votos em branco: " + eleicao.getVotosEmBranco());
         System.out.println("votos nulo: " + eleicao.getVotosNulo());
         System.out.println("Governador vencedor do turno: " + eleicao.getGovernadorMaisVotado());
-        System.out.println("Deputados vencedores do turno: " + eleicao.getDeputadosMaisVotados());
+        System.out.println("Deputados vencedores do turno: " + eleicao.getDeputadosMaisVotados());*/
         // 
+        
+        
     }
 }

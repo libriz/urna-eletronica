@@ -5,6 +5,13 @@ public class Candidato {
     private Cargo cargo;
     private String partido;
 
+    public Candidato (int numero, String nome, Cargo cargo, String partido) throws ErroNoCandidatoException{
+        this.numero = numero;
+        this.nome = nome;
+        this.cargo = cargo;
+        this.partido = partido;
+    }
+    
     public void setNumero(int numero) {
         this.numero = numero;
     }
