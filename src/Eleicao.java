@@ -101,15 +101,6 @@ public class Eleicao{
         //encerrar eleicao?
         
         //resultado
-        /*        eleicao.coletarVotos();
-        System.out.println("Resultado: ");
-        System.out.println("Urnas cadastradas: "+ eleicao.totalizarUrnas());
-        System.out.println("votos em branco: " + eleicao.getVotosEmBranco());
-        System.out.println("votos nulo: " + eleicao.getVotosNulo());
-        System.out.println("Governador vencedor do turno: " + eleicao.getGovernadorMaisVotado());
-        System.out.println("Deputados vencedores do turno: " + eleicao.getDeputadosMaisVotados());*/
-        // 
-        
-        
+        //System.out.println(eleicao.resultado());
     }
 }
