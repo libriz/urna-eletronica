@@ -49,7 +49,6 @@ public class Test {
         urna1.votar(02);
         urna1.votar(00);
         
-        
         urna2.votar(04);
         urna2.votar(05);
         urna2.votar(00);
@@ -69,6 +68,8 @@ public class Test {
         urna4.votar(03);
         
         //resultado
-        System.out.println(eleicao.resultado());
+        //System.out.println(eleicao.resultado("todas"));
+        System.out.println(eleicao.resultado("Florianopolis"));
+        //requisitar um resultado por vez
     }
 }

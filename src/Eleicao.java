@@ -1,13 +1,13 @@
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Eleicao{
     
+    public List<Urna> todasUrnas = new ArrayList();
     public List<Urna> urnas = new ArrayList();
     public List<Integer> votos = new ArrayList();
     public List<Candidato> candidatos = new ArrayList();
@@ -23,9 +23,23 @@ public class Eleicao{
         urna.setTurno(turno);
         urna.setNumeroDeEleitores(numeroDeEleitores);
         
-        urnas.add(urna);
+        todasUrnas.add(urna);
         
         return urna;
+    }
+    
+    public void coletarUrnas(String cidade){
+        
+        if(cidade.equals("todas")){
+            urnas=todasUrnas;
+        }else
+        {
+            for(int i = 0; i < todasUrnas.size(); i++){
+                Urna urna = todasUrnas.get(i);
+                    if(urna.getCidade().equals(cidade))
+                        urnas.add(urna);
+            }
+        }
     }
     
     public void coletarVotos(){
@@ -34,11 +48,11 @@ public class Eleicao{
         
         for(int i = 0; i < urnas.size(); i++){
             Urna urna = urnas.get(i);
-            votosTemp = urna.getVotos();
-                for(int y = 0; y < votosTemp.size(); y++){
-                    v = votosTemp.get(y);
-                    votos.add(v);
-                }
+                votosTemp = urna.getVotos();
+                    for(int y = 0; y < votosTemp.size(); y++){
+                        v = votosTemp.get(y);
+                        votos.add(v);
+                    }
         }
     }
     
@@ -57,11 +71,18 @@ public class Eleicao{
         }
     }
     
-    public String resultado(){
+    public String resultado(String cidade){
+        coletarUrnas(cidade);
         coletarCandidatos();
         coletarVotos();
         
-        String resultado = "Resultado: " + "\n\n";
+        String resultado = "";
+        
+        if(cidade.equals("todas"))
+            resultado += "Resultado geral: " + "\n\n";
+        else
+            resultado += "Resultado de " + cidade + " :" + "\n\n";
+        
         
         resultado+= "Urnas cadastradas: " + urnas.size() + "\n\n";
         
