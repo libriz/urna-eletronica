@@ -89,8 +89,33 @@ public class Eleicao{
                 resultado+= "Votos nulos: " + Collections.frequency(votos, temp) + " votos" + "\n";
 	}
         
+        
         return resultado;
     }
+    
+    public String votosPorCidade(){
+        String votosCidade = "";
+       Set<Integer> uniqueSet = new HashSet<Integer>(votos);
+        //mostrar votos pela Cidade
+        votosCidade+="Votos por cidade: \n";
+        for(int i=0; i < urnas.size(); i++){
+            Urna temp = urnas.get(i);
+            votosCidade+="\n" +  temp.getCidade();
+            votosCidade+=temp.getVotos() + "\n" ;
+        
+	for (Integer temp3 : uniqueSet) {
+                if(temp3!=00 && temp3!=99){
+                    Candidato candidato = null;
+                    for(int x = 0; x < candidatos.size(); x++){
+                        candidato = candidatos.get(x);
+                        if(temp3==candidato.getNumero())
+                            votosCidade+= candidato.getNome() + ": " + Collections.frequency(votos, temp3) + " votos" + "\n";
+                    }
+                }
+	}
+        }
+        //fim mostra pela cidade
+    return votosCidade;}
     
     public static void main(String[] args){
         

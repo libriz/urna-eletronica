@@ -48,6 +48,7 @@ public class Test {
         urna1.votar(01); //candidato numero 01
         urna1.votar(02);
         urna1.votar(00);
+        urna1.votar(07);
         
         
         urna2.votar(04);
@@ -70,5 +71,6 @@ public class Test {
         
         //resultado
         System.out.println(eleicao.resultado());
+        System.out.println(eleicao.votosPorCidade());
     }
 }
