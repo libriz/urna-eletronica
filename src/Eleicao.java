@@ -95,27 +95,25 @@ public class Eleicao{
     
     public String votosPorCidade(){
         String votosCidade = "";
-       Set<Integer> uniqueSet = new HashSet<Integer>(votos);
-        //mostrar votos pela Cidade
-        votosCidade+="Votos por cidade: \n";
-        for(int i=0; i < urnas.size(); i++){
-            Urna temp = urnas.get(i);
-            votosCidade+="\n" +  temp.getCidade();
-            votosCidade+=temp.getVotos() + "\n" ;
-        
-	for (Integer temp3 : uniqueSet) {
-                if(temp3!=00 && temp3!=99){
-                    Candidato candidato = null;
-                    for(int x = 0; x < candidatos.size(); x++){
-                        candidato = candidatos.get(x);
-                        if(temp3==candidato.getNumero())
-                            votosCidade+= candidato.getNome() + ": " + Collections.frequency(votos, temp3) + " votos" + "\n";
-                    }
+        //Urna temporaria = urnas.get(0);
+        for(int i =0; i< urnas.size();i++){
+            Urna temporaria = urnas.get(i);
+            votosCidade+= temporaria.votos.size()+" --numero de votos \n";
+            for(int y = 0; y<temporaria.votos.size();y++){
+                votosCidade+= temporaria.votos.get(y).toString() + "\n";
+                //parte para contar o voto no candidato
+                for(int z = 0; z<temporaria.candidatos.size();z++){
+                   if(temporaria.candidatos.get(z).getNumero() == temporaria.votos.get(y)){
+                       votosCidade+="ramon";
+                   }
                 }
-	}
+            }
         }
-        //fim mostra pela cidade
+        //votosCidade+= temporaria.votos.size();
+        //votosCidade+= temporaria.getVotos().toString();
+        
     return votosCidade;}
+        //fim mostra pela cidade
     
     public static void main(String[] args){
         
