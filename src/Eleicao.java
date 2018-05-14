@@ -121,6 +121,17 @@ public class Eleicao{
                 resultado+= "Votos nulos: " + Collections.frequency(votos, temp) + " votos" + "\n";
 	}
         
+        resultado+= "\n";
+        
+        if(cidade.equals("todas") && turno=="primeiro"){
+            resultado+= "Governador vencedor: " + "\n\n";
+            resultado+= "Deputados vencedores: " + "\n\n";
+        }else if(cidade.equals("todas") && turno=="segundo")
+        {
+            resultado+= "Governador eleito: " + "\n\n";
+            resultado+= "Deputados eleitos: " + "\n\n";
+        }
+            
         return resultado;
     }
     
