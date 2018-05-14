@@ -52,13 +52,15 @@ public class Principal{
                     if(eleicao.getTurno()!=null){
                         System.out.println("Cadastrar urna \n");
                         System.out.println("Digite o estado federativo \n");
-                        String estadoFederativo=sc.next();
+                        sc.nextLine();
+                        String estadoFederativo=sc.nextLine();
                         System.out.println("Digite a zona eleitoral \n");
                         int zonaEleitoral=sc.nextInt();
                         System.out.println("Digite a secao eleitoral\n");
                         int secaoEleitoral=sc.nextInt();
+                        sc.nextLine();
                         System.out.println("Digite a cidade \n");
-                        String cidade=sc.next();
+                        String cidade=sc.nextLine();
                         System.out.println("Digite o numero de eleitores \n");
                         int numeroDeEleitores=sc.nextInt();
                         
@@ -77,6 +79,7 @@ public class Principal{
                         System.out.println("Digite o numero \n");
                         int numero = -1;
                         int numeroTZ=sc.nextInt();
+                        //octal to integer
                         if(numeroTZ==1) numero=0x01;
                         if(numeroTZ==2) numero=0x02;
                         if(numeroTZ==3) numero=0x03;
@@ -87,25 +90,28 @@ public class Principal{
                         if(numeroTZ==8) numero=0x08;
                         if(numeroTZ==9) numero=0x09;
                         System.out.println("Digite o nome \n");
-                        String nome=sc.next();
+                        sc.nextLine();
+                        String nome=sc.nextLine();
                         System.out.println("Digite o cargo (GOVERNADOR ou DEPUTADO_ESTADUAL)\n");
                         Cargo cargo=Cargo.valueOf(sc.next().toUpperCase());
                         System.out.println("Digite o partido \n");
-                        String partido=sc.next();
+                        sc.nextLine();
+                        String partido=sc.nextLine();
                         Candidato candidato = new Candidato(numero, nome, cargo, partido);
                         //if()
                         System.out.println("*** Candidato cadastrado! ***\n");
                         //
                         
                         System.out.println("Digite a cidade que o candidato deve ser incluido\n");
-                        String cidade=sc.next();
-                        urnas = eleicao.coletarUrnas(cidade);
+                        //sc.nextLine();
+                        String cidadeZZ=sc.nextLine();
+                        urnas = eleicao.coletarUrnas(cidadeZZ);
                         for (int i = 0; i < urnas.size(); i++) {
                             IUrna urnaT1 = urnas.get(i);
                             urnaT1.incluirCandidato(candidato);
                         }
                         
-                        System.out.println("*** Candidato incluido na(s) urna(s) de " + cidade + " ***\n");
+                        System.out.println("*** Candidato incluido na(s) urna(s) de " + cidadeZZ + " ***\n");
                     }else{
                          System.out.println("*** Eleicao precisa ser iniciada antes! ***\n");
                     }
@@ -116,8 +122,9 @@ public class Principal{
                 if(eleicao.getTurno()!=null&&!votacaoEmAndamento){
                     System.out.println("configurar urna / escolha uma opcao:");
                     System.out.println("digitar a cidade de votacao");
-                
-                    String cidadeT=sc.next();
+                    
+                    sc.nextLine();
+                    String cidadeT=sc.nextLine();
                 
                     urnas = eleicao.coletarUrnas(cidadeT);
                     //System.out.println("n urnas: " + urnas.size() + "\n");
@@ -190,7 +197,8 @@ public class Principal{
                             break;
                             case 3: 
                                 System.out.println("Digite a cidade \n");
-                                String cidade2=sc.next();
+                                sc.nextLine();
+                                String cidade2=sc.nextLine();
 
                                 System.out.println(eleicao.resultado(cidade2));
                             break;
