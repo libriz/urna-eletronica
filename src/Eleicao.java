@@ -46,6 +46,7 @@ public class Eleicao {
     public void coletarVotos() {
         List<Integer> votosTemp = new ArrayList();
         int v = -1;
+        
         for (int i = 0; i < urnas.size(); i++) {
             IUrna urna = urnas.get(i);
             votosTemp = urna.getVotos();
@@ -59,6 +60,7 @@ public class Eleicao {
     public void coletarCandidatos() {
         List<Candidato> candidatosTemp = new ArrayList();
         Candidato candidato;
+        
         for (int i = 0; i < urnas.size(); i++) {
             IUrna urna = urnas.get(i);
             candidatosTemp = urna.getCandidatos();
@@ -74,14 +76,20 @@ public class Eleicao {
         coletarUrnas(cidade);
         coletarCandidatos();
         coletarVotos();
+        
         String resultado = "";
+        
         if (cidade.equals("todas"))
             resultado += "Resultado geral " + turno + " turno: " + "\n\n";
         else
             resultado += "Resultado de " + cidade + " " + turno + " turno: " + "\n\n";
+       
         resultado += "Urnas cadastradas: " + urnas.size() + "\n\n";
+        
         resultado += "Candidatos(as) cadastrados(as): " + candidatos.size() + "\n\n";
+        
         Set<Integer> uniqueSet = new HashSet<Integer>(votos);
+        
         for (Integer temp : uniqueSet) {
             if (temp != 00 && temp != 99) {
                 Candidato candidato = null;
@@ -92,14 +100,18 @@ public class Eleicao {
                 }
             }
         }
+        
         resultado += "\n";
+        
         for (Integer temp : uniqueSet) {
             if (temp == 00)
                 resultado += "Votos em branco: " + Collections.frequency(votos, temp) + " votos" + "\n";
             else if (temp == 99)
                 resultado += "Votos nulos: " + Collections.frequency(votos, temp) + " votos" + "\n";
         }
+        
         resultado += "\n";
+        
         if (cidade.equals("todas") && turno == "primeiro") {
             resultado += "Governador vencedor: " + "\n\n";
             resultado += "Deputados vencedores: " + "\n\n";
@@ -107,6 +119,7 @@ public class Eleicao {
             resultado += "Governador eleito: " + "\n\n";
             resultado += "Deputados eleitos: " + "\n\n";
         }
+        
         return resultado;
     }
 }

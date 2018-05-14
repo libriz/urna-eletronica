@@ -23,11 +23,13 @@ public class Urna implements IUrna {
             throw new ErroNoCandidatoException();
         else
             candidatos.add(candidato);
+        
         return candidato;
     }
 
     public int votar(int numero) {
         int voto = -1;
+        
         if (numero == 00) {
             voto = 00;
             votos.add(voto);
@@ -42,6 +44,7 @@ public class Urna implements IUrna {
             }
             votos.add(voto);
         }
+        
         return voto;
     }
 
