@@ -22,7 +22,7 @@ public class Principal{
             System.out.println("1 iniciar nova eleicao");
             System.out.println("2 cadastrar urna");
             System.out.println("3 cadastrar candidato");
-            System.out.println("4 iniciar votacao");
+            System.out.println("4 configurar ou iniciar votacao");
             System.out.println("5 encerrar eleicao ou mostrar resultados");
             System.out.println("6 sair \n");
             if(eleicao.getTurno()!=null){
@@ -75,7 +75,17 @@ public class Principal{
                     if(eleicao.getTurno()!=null){
                         System.out.println("Cadastrar candidato \n");
                         System.out.println("Digite o numero \n");
-                        int numero=sc.nextInt();
+                        int numero = -1;
+                        int numeroTZ=sc.nextInt();
+                        if(numeroTZ==1) numero=0x01;
+                        if(numeroTZ==2) numero=0x02;
+                        if(numeroTZ==3) numero=0x03;
+                        if(numeroTZ==4) numero=0x04;
+                        if(numeroTZ==5) numero=0x05;
+                        if(numeroTZ==6) numero=0x06;
+                        if(numeroTZ==7) numero=0x07;
+                        if(numeroTZ==8) numero=0x08;
+                        if(numeroTZ==9) numero=0x09;
                         System.out.println("Digite o nome \n");
                         String nome=sc.next();
                         System.out.println("Digite o cargo (GOVERNADOR ou DEPUTADO_ESTADUAL)\n");
