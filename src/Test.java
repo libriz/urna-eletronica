@@ -11,31 +11,32 @@ public class Test {
         
         //candidato do mesmo partido e permitido? se nao, entao implementar erro
         
-        Eleicao eleicao = new Eleicao();
+        //eleicao, turno
+        Eleicao eleicao = new Eleicao("primeiro");
         
         //cadastrar urnas
-        IUrna urna1 = eleicao.incluirUrna("SC", 1, 1, "Florianopolis", 1, 5);
+        IUrna urna1 = eleicao.incluirUrna("SC", 1, 1, "Florianopolis", 5);
         urna1.incluirCandidato(candidato1);
         urna1.incluirCandidato(candidato2);
         urna1.incluirCandidato(candidato3);
         urna1.incluirCandidato(candidato4);
         urna1.incluirCandidato(candidato5);
         
-        IUrna urna2 = eleicao.incluirUrna("SC", 2, 1, "Florianopolis", 1, 5);
+        IUrna urna2 = eleicao.incluirUrna("SC", 2, 1, "Florianopolis", 5);
         urna2.incluirCandidato(candidato1);
         urna2.incluirCandidato(candidato2);
         urna2.incluirCandidato(candidato3);
         urna2.incluirCandidato(candidato4);
         urna2.incluirCandidato(candidato5);
         
-        IUrna urna3 = eleicao.incluirUrna("SC", 3, 1, "Sao Jose", 1, 5);
+        IUrna urna3 = eleicao.incluirUrna("SC", 3, 1, "Sao Jose", 5);
         urna3.incluirCandidato(candidato1);
         urna3.incluirCandidato(candidato2);
         urna3.incluirCandidato(candidato3);
         urna3.incluirCandidato(candidato4);
         urna3.incluirCandidato(candidato5);
         
-        IUrna urna4 = eleicao.incluirUrna("SC", 4, 1, "Sao Jose", 1, 5);
+        IUrna urna4 = eleicao.incluirUrna("SC", 4, 1, "Sao Jose", 5);
         urna4.incluirCandidato(candidato1);
         urna4.incluirCandidato(candidato2);
         urna4.incluirCandidato(candidato3);
@@ -68,8 +69,9 @@ public class Test {
         urna4.votar(03);
         
         //resultado
-        //System.out.println(eleicao.resultado("todas"));
-        System.out.println(eleicao.resultado("Florianopolis"));
         //requisitar um resultado por vez
+        
+        System.out.println(eleicao.resultado("todas"));
+        //System.out.println(eleicao.resultado("Florianopolis"));
     }
 }

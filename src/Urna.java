@@ -7,7 +7,6 @@ public class Urna implements IUrna{
     public int zonaEleitoral;
     public int secaoEleitoral;
     public String cidade;
-    public int turno;
     public int numeroDeEleitores;
     public List<Candidato> candidatos = new ArrayList();
     public List<Integer> votos = new ArrayList();
@@ -66,10 +65,6 @@ public class Urna implements IUrna{
         this.cidade = cidade;
     }
     
-    public void setTurno(int turno){
-        this.turno = turno;
-    }
-    
     public void setNumeroDeEleitores(int numeroDeEleitores){
         this.numeroDeEleitores = numeroDeEleitores;
     }
@@ -88,10 +83,6 @@ public class Urna implements IUrna{
     
     public String getCidade(){
         return cidade;
-    }
-    
-    public int getTurno(){
-        return turno;
     }
     
     public int getNumeroDeEleitores(){

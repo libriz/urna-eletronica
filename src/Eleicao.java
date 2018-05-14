@@ -6,21 +6,33 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Eleicao{
+    public String turno;
     
     public List<Urna> todasUrnas = new ArrayList();
     public List<Urna> urnas = new ArrayList();
     public List<Integer> votos = new ArrayList();
     public List<Candidato> candidatos = new ArrayList();
     
+    public void setTurno(String turno){
+        this.turno = turno;
+    }
+    
+    public String getTurno(){
+        return turno;
+    }
+    
+    public Eleicao(String turno){
+        this.turno = turno;
+    }
+    
     public Urna incluirUrna(String estadoFederativo, int zonaEleitoral, int secaoEleitoral, 
-            String cidade, int turno, int numeroDeEleitores){
+            String cidade, int numeroDeEleitores){
         Urna urna = new Urna();
         
         urna.setEstadoFederativo(estadoFederativo);
         urna.setZonaEleitoral(zonaEleitoral);
         urna.setSecaoEleitoral(secaoEleitoral);
         urna.setCidade(cidade);
-        urna.setTurno(turno);
         urna.setNumeroDeEleitores(numeroDeEleitores);
         
         todasUrnas.add(urna);
@@ -79,10 +91,9 @@ public class Eleicao{
         String resultado = "";
         
         if(cidade.equals("todas"))
-            resultado += "Resultado geral: " + "\n\n";
+            resultado += "Resultado geral "+ turno + " turno: " + "\n\n";
         else
-            resultado += "Resultado de " + cidade + " :" + "\n\n";
-        
+            resultado += "Resultado de " + cidade + " " + turno + " turno: " + "\n\n";
         
         resultado+= "Urnas cadastradas: " + urnas.size() + "\n\n";
         
@@ -115,13 +126,10 @@ public class Eleicao{
     
     public static void main(String[] args){
         
-        //Eleicao eleicao = new Eleicao();
-        
-        //resultado parcial:
-        
-        //encerrar eleicao?
+        //Eleicao eleicao = new Eleicao(primeiro);
+        //Eleicao eleicao = new Eleicao(segundo);
         
         //resultado
-        //System.out.println(eleicao.resultado());
+        //System.out.println(eleicao.resultado("todas"));
     }
 }
