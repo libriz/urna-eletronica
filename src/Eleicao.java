@@ -34,7 +34,7 @@ public class Eleicao {
         return urna;
     }
 
-    public void coletarUrnas(String cidade) {
+    public List<IUrna> coletarUrnas(String cidade) {
         if (cidade.equals("todas")) {
             urnas = todasUrnas;
         } else {
@@ -44,6 +44,8 @@ public class Eleicao {
                     urnas.add(urna);
             }
         }
+        
+        return urnas;
     }
 
     public void coletarVotos() {
