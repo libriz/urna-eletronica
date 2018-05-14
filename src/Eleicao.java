@@ -11,16 +11,19 @@ public class Eleicao {
     public List<Integer> votos = new ArrayList();
     public List<Candidato> candidatos = new ArrayList();
 
+    public Eleicao() {
+    }
+    
+    public Eleicao(String turno) {
+        this.turno = turno;
+    }
+    
     public void setTurno(String turno) {
         this.turno = turno;
     }
 
     public String getTurno() {
         return turno;
-    }
-
-    public Eleicao(String turno) {
-        this.turno = turno;
     }
 
     public IUrna incluirUrna(IUrna urna) throws ErroNaUrnaException {
@@ -88,6 +91,13 @@ public class Eleicao {
         
         resultado += "Candidatos(as) cadastrados(as): " + candidatos.size() + "\n\n";
         
+        int votosTemp = 0;
+        int votosTemp1 = 0;
+        int votosTemp2 = 0;
+        int votosTemp3 = 0;
+        String governador = null;
+        List<String> deputadosVencedores = new ArrayList();
+        
         Set<Integer> uniqueSet = new HashSet<Integer>(votos);
         
         for (Integer temp : uniqueSet) {
@@ -95,8 +105,24 @@ public class Eleicao {
                 Candidato candidato = null;
                 for (int i = 0; i < candidatos.size(); i++) {
                     candidato = candidatos.get(i);
-                    if (temp == candidato.getNumero())
-                        resultado += candidato.getNome() + ": " + Collections.frequency(votos, temp) + " votos" + "\n";
+                    if ((temp == candidato.getNumero())&&candidato.getCargo().equals(Cargo.GOVERNADOR)){
+                        votosTemp = Collections.frequency(votos, temp);
+                        resultado += candidato.getNome() + ": " + votosTemp + " votos" + "\n";
+                            if(votosTemp>votosTemp1){
+                                governador = candidato.getNome();
+                                votosTemp1=votosTemp;
+                            }
+                    }
+                    if ((temp == candidato.getNumero())&&candidato.getCargo().equals(Cargo.DEPUTADO_ESTADUAL)){
+                        votosTemp2 = Collections.frequency(votos, temp);
+                        resultado += candidato.getNome() + ": " + votosTemp2 + " votos" + "\n";
+                        if(deputadosVencedores.size()<4) {
+                            if(votosTemp2>=votosTemp3){
+                                deputadosVencedores.add(candidato.getNome());
+                                votosTemp3=votosTemp2;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -113,11 +139,17 @@ public class Eleicao {
         resultado += "\n";
         
         if (cidade.equals("todas") && turno == "primeiro") {
-            resultado += "Governador vencedor: " + "\n\n";
-            resultado += "Deputados vencedores: " + "\n\n";
+            resultado += "Governador vencedor: " + governador + "\n\n";
+            resultado += "Deputados vencedores: " + "\n";
+            for(String d : deputadosVencedores) {
+                resultado += d + "\n";
+            }
         } else if (cidade.equals("todas") && turno == "segundo") {
-            resultado += "Governador eleito: " + "\n\n";
-            resultado += "Deputados eleitos: " + "\n\n";
+            resultado += "Governador eleito: " + governador + "\n\n";
+            resultado += "Deputados eleitos: " + "\n";
+            for(String d : deputadosVencedores) {
+                resultado += d + "\n";
+            }
         }
         
         return resultado;

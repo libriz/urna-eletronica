@@ -1,11 +1,7 @@
 public class Candidato {
-
     private int numero;
-
     private String nome;
-
     private Cargo cargo;
-
     private String partido;
 
     public Candidato(int numero, String nome, Cargo cargo, String partido) throws ErroNoCandidatoException {
