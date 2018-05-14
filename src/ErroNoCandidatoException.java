@@ -1,7 +1,6 @@
-
 public class ErroNoCandidatoException extends RuntimeException {
 
-    public ErroNoCandidatoException(){
+    public ErroNoCandidatoException() {
         super("Erro: ErroNoCandidatoException");
     }
 }

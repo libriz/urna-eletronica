@@ -1,8 +1,7 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Urna implements IUrna{
+public class Urna implements IUrna {
     public String estadoFederativo;
     public int zonaEleitoral;
     public int secaoEleitoral;
@@ -10,82 +9,87 @@ public class Urna implements IUrna{
     public int numeroDeEleitores;
     public List<Candidato> candidatos = new ArrayList();
     public List<Integer> votos = new ArrayList();
-    
-    public Candidato incluirCandidato(Candidato candidato) throws ErroNoCandidatoException{
-        if(candidatos.contains(candidato))
+
+    public Urna(String estadoFederativo, int zonaEleitoral, int secaoEleitoral, String cidade, int numeroDeEleitores) {
+        this.estadoFederativo = estadoFederativo;
+        this.zonaEleitoral = zonaEleitoral;
+        this.secaoEleitoral = secaoEleitoral;
+        this.cidade = cidade;
+        this.numeroDeEleitores = numeroDeEleitores;
+    }
+
+    public Candidato incluirCandidato(Candidato candidato) throws ErroNoCandidatoException {
+        if (candidatos.contains(candidato))
             throw new ErroNoCandidatoException();
         else
             candidatos.add(candidato);
-        
         return candidato;
     }
-    
-    public int votar(int numero){
-        int voto = -1; // voto invalido
-        
-        if(numero==00){
-            voto=00;
+
+    public int votar(int numero) {
+        int voto = -1;
+        if (numero == 00) {
+            voto = 00;
             votos.add(voto);
-        }else if(numero==99){
-            voto=99;
+        } else if (numero == 99) {
+            voto = 99;
             votos.add(voto);
-        }else{
-            for(int i=0;i<candidatos.size();i++){
+        } else {
+            for (int i = 0; i < candidatos.size(); i++) {
                 Candidato candidatoTemp = candidatos.get(i);
-                if(candidatoTemp.getNumero()==numero)
+                if (candidatoTemp.getNumero() == numero)
                     voto = numero;
             }
             votos.add(voto);
         }
-        
         return voto;
     }
-    
-    public List<Candidato> getCandidatos(){
+
+    public List<Candidato> getCandidatos() {
         return candidatos;
     }
-    
-    public List<Integer> getVotos(){
+
+    public List<Integer> getVotos() {
         return votos;
     }
-    
-    public void setEstadoFederativo(String estadoFederativo){
+
+    public void setEstadoFederativo(String estadoFederativo) {
         this.estadoFederativo = estadoFederativo;
     }
-    
-    public void setZonaEleitoral(int zonaEleitoral){
+
+    public void setZonaEleitoral(int zonaEleitoral) {
         this.zonaEleitoral = zonaEleitoral;
     }
-    
-    public void setSecaoEleitoral(int secaoEleitoral){
+
+    public void setSecaoEleitoral(int secaoEleitoral) {
         this.secaoEleitoral = secaoEleitoral;
     }
-    
-    public void setCidade(String cidade){
+
+    public void setCidade(String cidade) {
         this.cidade = cidade;
     }
-    
-    public void setNumeroDeEleitores(int numeroDeEleitores){
+
+    public void setNumeroDeEleitores(int numeroDeEleitores) {
         this.numeroDeEleitores = numeroDeEleitores;
     }
-    
-    public String getEstadoFederativo(){
+
+    public String getEstadoFederativo() {
         return estadoFederativo;
     }
-    
-    public int getZonaEleitoral(){
+
+    public int getZonaEleitoral() {
         return zonaEleitoral;
     }
-    
-    public int getSecaoEleitoral(){
+
+    public int getSecaoEleitoral() {
         return secaoEleitoral;
     }
-    
-    public String getCidade(){
+
+    public String getCidade() {
         return cidade;
     }
-    
-    public int getNumeroDeEleitores(){
+
+    public int getNumeroDeEleitores() {
         return numeroDeEleitores;
     }
 }
