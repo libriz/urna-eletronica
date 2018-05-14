@@ -8,9 +8,13 @@ public class Principal{
                 
             Scanner sc=new Scanner(System.in); 
             
-            Eleicao eleicao = new Eleicao();
+            Eleicao eleicao = new Eleicao(null);
+            
+            List<IUrna> urnas = null;
             
             boolean votacaoEmAndamento = false;
+            
+            boolean todosEleitoresJaVotaram = false;
             
             do{
             
@@ -45,7 +49,7 @@ public class Principal{
                 break;
                 
                 case 2:
-                    //if(eleicao.getTurno()==null){
+                    if(eleicao.getTurno()!=null){
                         System.out.println("Cadastrar urna \n");
                         System.out.println("Digite o estado federativo \n");
                         String estadoFederativo=sc.next();
@@ -62,13 +66,13 @@ public class Principal{
                         eleicao.incluirUrna(urna);
                         //if()
                         System.out.println("*** Urna cadastrada! ***\n");
-                    //}else{
-                    //     System.out.println("*** Eleicao ja foi iniciada! ***\n");
-                    //}
+                    }else{
+                         System.out.println("*** Eleicao precisa ser iniciada antes! ***\n");
+                    }
                 break;
                     
                 case 3:
-                    //if(eleicao.getTurno()==null){
+                    if(eleicao.getTurno()!=null){
                         System.out.println("Cadastrar candidato \n");
                         System.out.println("Digite o numero \n");
                         int numero=sc.nextInt();
@@ -79,69 +83,80 @@ public class Principal{
                         System.out.println("Digite o partido \n");
                         String partido=sc.next();
                         Candidato candidato = new Candidato(numero, nome, cargo, partido);
-                        //urna.incluirCandidato(candidato);
                         //if()
                         System.out.println("*** Candidato cadastrado! ***\n");
-                    //}else{
-                         //System.out.println("*** Eleicao ja foi iniciada! ***\n");
-                    //}
+                        //
+                        
+                        System.out.println("Digite a cidade que o candidato deve ser incluido\n");
+                        String cidade=sc.next();
+                        urnas = eleicao.coletarUrnas(cidade);
+                        for (int i = 0; i < urnas.size(); i++) {
+                            IUrna urnaT1 = urnas.get(i);
+                            urnaT1.incluirCandidato(candidato);
+                        }
+                        
+                        System.out.println("*** Candidato incluido na(s) urna(s) de " + cidade + " ***\n");
+                    }else{
+                         System.out.println("*** Eleicao precisa ser iniciada antes! ***\n");
+                    }
                 break;
                     
                 //votacao
                 case 4:
-                //if(!votacaoEmAndamento){
-                System.out.println("configurar urna / escolha uma opcao:");
-                System.out.println("digitar a cidade de votacao");
+                if(eleicao.getTurno()!=null&&!votacaoEmAndamento){
+                    System.out.println("configurar urna / escolha uma opcao:");
+                    System.out.println("digitar a cidade de votacao");
                 
-                String cidadeT=sc.next();
+                    String cidadeT=sc.next();
                 
-                List<IUrna> urnas = eleicao.coletarUrnas(cidadeT);
-                System.out.println("n urnas: " + urnas.size() + "\n");
-                votacaoEmAndamento = true;
+                    urnas = eleicao.coletarUrnas(cidadeT);
+                    //System.out.println("n urnas: " + urnas.size() + "\n");
+                    votacaoEmAndamento = true;
                 
-                System.out.println("*** votacao em andamento! *** \n");
+                    System.out.println("*** votacao em andamento! *** \n");
                 
-                //}else{
-                
-                for (int i = 0; i < urnas.size(); i++) {
-                    int numeroDeVotos = 0;
-                    IUrna urnaT = urnas.get(i);
-                    if(numeroDeVotos<urnaT.getNumeroDeEleitores()){
-                        System.out.println("escolha uma opcao:");
-                        System.out.println("1 digitar o numero do candidato");
-                        System.out.println("2 voto em branco");
-                        System.out.println("3 voto nulo \n");
+                }else
+                {
+                    if(!todosEleitoresJaVotaram){
+                        for (int i = 0; i < urnas.size(); i++) {
+                            int numeroDeVotos = 0;
+                            IUrna urnaT = urnas.get(i);
+                            while(numeroDeVotos<urnaT.getNumeroDeEleitores()){
+                                System.out.println("escolha uma opcao:");
+                                System.out.println("1 digitar o numero do candidato");
+                                System.out.println("2 voto em branco");
+                                System.out.println("3 voto nulo \n");
 
-                        int opcao2=sc.nextInt();
+                                int opcao2=sc.nextInt();
 
-                        switch(opcao2){
-                            case 1:
-                                System.out.println("Digite o numero \n");
-                                int numeroT=sc.nextInt();
+                                switch(opcao2){
+                                    case 1:
+                                        System.out.println("Digite o numero \n");
+                                        int numeroT=sc.nextInt();
 
-                                urnaT.votar(numeroT);
-                                numeroDeVotos++;
-                                System.out.println("*** voto efetuado! *** \n");
-                                //exit = true;
-                                break;
+                                        urnaT.votar(numeroT);
+                                        numeroDeVotos++;
+                                        System.out.println("*** voto efetuado! *** \n");
+                                        break;
 
-                            case 2:
-                                urnaT.votar(00);
-                                numeroDeVotos++;
-                                System.out.println("*** voto efetuado! *** \n");
-                                //exit = true;
-                                break;
+                                    case 2:
+                                        urnaT.votar(00);
+                                        numeroDeVotos++;
+                                        System.out.println("*** voto efetuado! *** \n");
+                                        break;
 
-                            case 3:
-                                urnaT.votar(99);
-                                numeroDeVotos++;
-                                System.out.println("*** voto efetuado! *** \n");
-                                //exit = true;
-                                break;
+                                    case 3:
+                                        urnaT.votar(99);
+                                        numeroDeVotos++;
+                                        System.out.println("*** voto efetuado! *** \n");
+                                        break;
+                                }
+                            }
                         }
-                        }
-                        
-                    //}
+                        todosEleitoresJaVotaram = true;
+                    }else{
+                        System.out.println("*** todos os eleitores ja votaram! *** \n");
+                    }
                 }
                 break;
 
