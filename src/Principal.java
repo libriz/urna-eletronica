@@ -105,10 +105,12 @@ public class Principal{
                         System.out.println("Digite a cidade que o candidato deve ser incluido\n");
                         //sc.nextLine();
                         String cidadeZZ=sc.nextLine();
+                        
                         urnas = eleicao.coletarUrnas(cidadeZZ);
                         for (int i = 0; i < urnas.size(); i++) {
                             IUrna urnaT1 = urnas.get(i);
-                            urnaT1.incluirCandidato(candidato);
+                            if(!urnas.contains(urnaT1))
+                                urnaT1.incluirCandidato(candidato);
                         }
                         
                         System.out.println("*** Candidato incluido na(s) urna(s) de " + cidadeZZ + " ***\n");
